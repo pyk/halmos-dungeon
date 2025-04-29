@@ -49,3 +49,18 @@ Symbolic test result: 0 passed; 1 failed; time: 0.29s
 
 [time] total: 0.64s (build: 0.22s, load: 0.13s, tests: 0.29s)
 ```
+
+## Level 2: HookTakeover
+
+In this challenge, the HookTakeOver contract guards access to its `execute()`
+function, which sets the exploited flag to `true`. Initially, only a specific
+hook address (provided during deployment) is authorized.
+
+My goal is how to write symbolic test that can find a sequence of interactions
+involving `toggle()` and `setHook()` that allows an unauthorized caller to eventually
+gain the necessary permissions and call `execute()`, thus breaking the
+`exploited == false` invariant.
+
+```shell
+% halmos --contract HookTakeover --early-exit -st
+```
