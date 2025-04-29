@@ -56,7 +56,7 @@ In this challenge, the HookTakeOver contract guards access to its `execute()`
 function, which sets the exploited flag to `true`. Initially, only a specific
 hook address (provided during deployment) is authorized.
 
-My goal is how to write symbolic test that can find a sequence of interactions
+My goal is to learn how to write symbolic test that can find a sequence of interactions
 involving `toggle()` and `setHook()` that allows an unauthorized caller to eventually
 gain the necessary permissions and call `execute()`, thus breaking the
 `exploited == false` invariant.
