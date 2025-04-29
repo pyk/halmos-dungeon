@@ -5,9 +5,15 @@ contract challenges I created while learning Halmos. Follow along as I use
 symbolic execution to hunt for the hidden dragon 🐲 (vulnerability) in each
 level!
 
-## Halmos Version
+## Halmos & Foundry Version
 
 ```shell
+% forge --version
+forge Version: 1.0.0-stable
+Commit SHA: e144b82070619b6e10485c38734b4d4d45aebe04
+Build Timestamp: 2025-02-13T20:02:34.979686000Z (1739476954)
+Build Profile: maxperf
+
 % halmos --version
 halmos 0.2.6
 ```
