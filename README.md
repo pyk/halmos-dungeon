@@ -63,4 +63,16 @@ gain the necessary permissions and call `execute()`, thus breaking the
 
 ```shell
 % halmos --contract HookTakeover --early-exit -st
+[⠊] Compiling...
+No files changed, compilation skipped
+
+Running 1 tests for test/L2_HookTakeover.sol:HookTakeoverTest
+setup: 0.01s (decode: 0.00s, run: 0.01s)
+Counterexample:
+    p_caller_address_5cf5c44_00 = 0x00
+    p_newHook_address_56f65a7_12 = 0x00
+[FAIL] check_invariant(address) (paths: 7, time: 0.53s (paths: 0.53s, models: 0.00s), bounds: [])
+Symbolic test result: 0 passed; 1 failed; time: 0.54s
+
+[time] total: 0.90s (build: 0.22s, load: 0.14s, tests: 0.54s)
 ```
