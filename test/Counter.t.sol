@@ -13,11 +13,6 @@ contract CounterTest is SymTest, Test {
         counter = new Counter(10);
     }
 
-    function test_Increment() public {
-        counter.increment();
-        assertEq(counter.number(), 11);
-    }
-
     function check_increment() public {
         counter.increment();
 
