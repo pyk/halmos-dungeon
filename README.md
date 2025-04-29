@@ -26,5 +26,15 @@ Halmos should identify this state transition path as a way to alter the contract
 intended initial property value.
 
 ```shell
-% halmos --contract SimpleKnobTest
+% halmos --contract SimpleKnobTest --early-exit -st
+[⠊] Compiling...
+No files changed, compilation skipped
+
+Running 1 tests for test/L1_SimpleKnob.t.sol:SimpleKnobTest
+setup: 0.01s (decode: 0.00s, run: 0.00s)
+Counterexample: ∅
+[FAIL] check_invariant() (paths: 4, time: 0.28s (paths: 0.28s, models: 0.00s), bounds: [])
+Symbolic test result: 0 passed; 1 failed; time: 0.29s
+
+[time] total: 0.64s (build: 0.22s, load: 0.13s, tests: 0.29s)
 ```

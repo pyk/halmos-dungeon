@@ -16,7 +16,7 @@ contract SimpleKnobTest is SymTest, Test {
         bool success;
 
         for (uint256 i = 0; i < 10; i++) {
-            (success,) = address(target).call(svm.createCalldata("SimpleKnob")); // excluding view functions
+            (success,) = address(target).call(svm.createCalldata("SimpleKnob"));
             vm.assume(success);
         }
 
