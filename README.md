@@ -1,6 +1,11 @@
-# Halmos Playground
+# Halmos Dungeon
 
-My personal halmos playground.
+Welcome to my Halmos Dungeon! This repository contains a series of smart
+contract challenges I created while learning Halmos. Follow along as I use
+symbolic execution to hunt for the hidden dragon 🐲 (vulnerability) in each
+level!
+
+## Halmos Version
 
 ```shell
 % halmos --version
