@@ -12,8 +12,6 @@ contract HookTakeoverTest is SymTest, Test {
         target = new HookTakeover(address(this));
     }
 
-    // Invariant: exploited should always be false.
-    // Halmos should find a sequence of calls to break this.
     function check_invariant(address caller) public {
         bool success;
 
@@ -24,10 +22,6 @@ contract HookTakeoverTest is SymTest, Test {
         uint256 maxCalls = 5;
 
         for (uint256 i = 0; i < maxCalls; i++) {
-            // Let Halmos generate a symbolic call to any function in HookTakeover.
-            // By default, the msg.sender for these calls will be address(this),
-            // which is the "attacker" in this scenario.
-            // Halmos can choose to call toggle(), setHook(address(this)), execute(), etc.
             vm.startPrank(caller);
             (success,) = address(target).call(svm.createCalldata("HookTakeover"));
             vm.stopPrank();
