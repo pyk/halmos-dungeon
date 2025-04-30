@@ -32,7 +32,7 @@ contract PiggyBankBuggyTest is SymTest, Test {
         vm.assume(token.balanceOf(user) == userDepositAmount);
         vm.assume(target.getDeposit(user) == userDepositAmount);
 
-        vm.assume(token.balanceOf(user) == attackerDepositAmount);
+        vm.assume(token.balanceOf(attacker) == attackerDepositAmount);
         vm.assume(target.getDeposit(attacker) == attackerDepositAmount);
 
         vm.assume(token.balanceOf(address(target)) == userDepositAmount + attackerDepositAmount);
