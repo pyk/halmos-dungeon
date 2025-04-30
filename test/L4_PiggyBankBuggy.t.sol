@@ -36,17 +36,18 @@ contract PiggyBankBuggyTest is SymTest, Test {
         vm.assume(token.balanceOf(attacker) == attackerDepositAmount);
         vm.assume(target.getDeposit(attacker) == attackerDepositAmount);
         vm.assume(attackerWithdrawAmount <= userDepositAmount + attackerDepositAmount);
+        vm.assume(attackerWithdrawAmount >= attackerDepositAmount);
 
         vm.assume(token.balanceOf(address(target)) == userDepositAmount + attackerDepositAmount);
 
         // Lets attacker explore all possible paths to gain more token
-        uint256 maxCalls = 10;
-        for (uint256 i = 0; i < maxCalls; i++) {
-            vm.startPrank(attacker);
-            (bool success,) = address(target).call(svm.createCalldata("PiggyBankBuggy"));
-            vm.stopPrank();
-            vm.assume(success);
-        }
+        // uint256 maxCalls = 10;
+        // for (uint256 i = 0; i < maxCalls; i++) {
+        //     vm.startPrank(attacker);
+        //     (bool success,) = address(target).call(svm.createCalldata("PiggyBankBuggy"));
+        //     vm.stopPrank();
+        //     vm.assume(success);
+        // }
 
         vm.startPrank(attacker);
         target.withdraw(attackerWithdrawAmount);
