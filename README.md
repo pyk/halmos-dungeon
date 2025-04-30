@@ -76,3 +76,36 @@ Symbolic test result: 0 passed; 1 failed; time: 0.54s
 
 [time] total: 0.90s (build: 0.22s, load: 0.14s, tests: 0.54s)
 ```
+
+## Level 3: PiggyBank
+
+In this level, I'm trying to wrap my head around Halmos's behavior concerning
+symbolic execution and state assumptions.
+
+My initial expectation was that the test would fail because:
+
+- The test setup **did not** explicitly fund the actor's token balance.
+- The test setup **did not** explicitly approve the target contract to spend the actor's tokens.
+
+However, the test passed. This occurred because:
+
+- Using `vm.assume` on the balance forced Halmos to consider only execution paths where the actor's initial balance was already sufficient for the transfer. It filters possibilities rather than creating state.
+- We did not constrain the token allowance state (e.g., using `vm.assume` or by setting it explicitly). Halmos was therefore free to explore scenarios where the allowance was sufficient.
+- Consequently, because a possible symbolic state existed where:
+  - the balance met the `vm.assume` condition,
+  - and the allowance was sufficient (being unconstrained), the transferFrom could succeed and the final assertions held true. As a result, Halmos could not find a counterexample under these specific test conditions and reported `[PASS]`.
+
+```shell
+% halmos --contract PiggyBankTest --early-exit -st
+[⠊] Compiling...
+[⠑] Compiling 1 files with Solc 0.8.28
+[⠘] Solc 0.8.28 finished in 584.23ms
+Compiler run successful!
+
+Running 1 tests for test/L3_PiggyBank.t.sol:PiggyBankTest
+setup: 0.03s (decode: 0.01s, run: 0.03s)
+[PASS] check_deposit() (paths: 2, time: 0.20s (paths: 0.09s, models: 0.11s), bounds: [])
+Symbolic test result: 1 passed; 0 failed; time: 0.24s
+
+[time] total: 1.32s (build: 0.93s, load: 0.15s, tests: 0.24s)
+```
