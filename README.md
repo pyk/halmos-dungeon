@@ -62,7 +62,7 @@ gain the necessary permissions and call `execute()`, thus breaking the
 `exploited == false` invariant.
 
 ```shell
-% halmos --contract HookTakeover --early-exit -st
+% halmos --contract HookTakeoverTest --early-exit -st
 [⠊] Compiling...
 No files changed, compilation skipped
 
